@@ -1,0 +1,37 @@
+[package]
+name = "nosebleed"
+version = "0.3.0"
+edition = "2021"
+
+
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = "z"  # Optimize for size.
+lto = true
+
+[dependencies]
+eframe = "0.21.3"
+rfd = "0.11.3"
+tasklist = "0.2.12"
+windows-sys = {version = "*", features = [
+                "Win32_Foundation",
+                "Win32_Security",
+                "Win32_System_Kernel",
+                "Win32_System_Memory",
+                "Win32_System_Threading",
+                "Win32_System_Console",
+                "Win32_System_LibraryLoader",
+                "Win32_System_ProcessStatus",
+                "Win32_System_SystemServices",
+                "Win32_System_Diagnostics_Debug",
+                "Win32_System_Diagnostics_ToolHelp",
+                "Win32_UI_Input_KeyboardAndMouse",
+                ]}
+serde = { version = "1.0.160", features = ["derive"] }
+enum_dispatch = "0.3.11"
+env_logger = "0.10.0"
+log = "0.4.17"
+exe = "0.4"
+
+[target.'cfg(windows)'.build-dependencies]
+winres = "0.1"
